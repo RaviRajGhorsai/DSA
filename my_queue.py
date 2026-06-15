@@ -26,3 +26,12 @@ class Queue:
 
     def size(self) -> int:
         return len(self.items)
+
+    def search_and_remove(self, item: Any) -> Any:
+        if item not in self.items:
+            return None
+        self.items.remove(item)
+        return item
+
+    def __repr__(self) -> str:
+        return f"[{', '.join(self.items)}]"
