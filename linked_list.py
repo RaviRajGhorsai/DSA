@@ -26,6 +26,7 @@ from node import Node
 class LinkedList:
     def __init__(self) -> None:
         self.head = None
+        self.tail = None
 
     def __iter__(self):
         node = self.head
@@ -34,6 +35,9 @@ class LinkedList:
             node = node.next
 
     def add_to_head(self, node: Node) -> None:
+        if self.head is None:
+            self.tail = node
+
         node.set_next(self.head)
 
         self.head = node
@@ -41,14 +45,12 @@ class LinkedList:
     def add_to_tail(self, node: Node) -> None:
         if self.head is None:
             self.head = node
+            self.tail = node
             return
 
-        last = self.head
+        self.tail.set_next(node)
 
-        for current in self:
-            last = current
-
-        last.set_next(node)
+        self.tail = node
 
     # don't touch below this line
 
