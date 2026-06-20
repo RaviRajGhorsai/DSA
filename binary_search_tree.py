@@ -16,7 +16,18 @@ class BSTNode:
         self.left: "BSTNode | None" = None
         self.right: "BSTNode | None" = None
         self.val = val
-    
+   
+    def inorder(self, visited: list[Any]) -> list[Any]:
+        if self.left:
+            self.left.inorder(visited)
+
+        visited.append(self.val)
+
+        if self.right:
+            self.right.inorder(visited)
+
+        return visited
+
     def postorder(self, visited: list[Any]) -> list[Any]:
 
         if self.left:
