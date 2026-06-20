@@ -17,6 +17,19 @@ class BSTNode:
         self.right: "BSTNode | None" = None
         self.val = val
 
+    def preorder(self, visited: list[Any]) -> list[Any]:
+        if self.val is not None:
+            visited.append(self.val)
+        
+        if self.left is not None:
+            self.left.preorder(visited)
+        
+        if self.right is not None:
+            self.right.preorder(visited)
+
+        return visited
+
+
     def delete(self, val: Any) -> "BSTNode | None":
         if self.val is None:
             return None
