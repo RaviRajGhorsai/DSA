@@ -17,6 +17,44 @@ class BSTNode:
         self.right: "BSTNode | None" = None
         self.val = val
 
+    def delete(self, val: Any) -> "BSTNode | None":
+        if self.val is None:
+            return None
+
+        elif val < self.val:
+            if self.left:
+                self.left = self.left.delete(val)
+
+            return self
+
+        elif val > self.val:
+            if self.right:
+                self.right = self.right.delete(val)
+
+            return self
+
+        elif val == self.val:
+            if self.right is None:
+                return self.left
+
+            elif self.left is None:
+                return self.right
+
+            else:
+
+                min_larger_node = self.right
+
+                while min_larger_node.left is not None:
+                    min_larger_node = min_larger_node.left
+
+                self.val = min_larger_node.val
+
+                self.right = self.right.delete(min_larger_node.val)
+
+                return self
+
+
+
     def get_min(self) -> Any:
         min_val = self
 
