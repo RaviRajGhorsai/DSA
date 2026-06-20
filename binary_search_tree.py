@@ -17,6 +17,22 @@ class BSTNode:
         self.right: "BSTNode | None" = None
         self.val = val
 
+    def get_min(self) -> Any:
+        min_val = self
+
+        while min_val.left is not None:
+            min_val = min_val.left
+
+        return min_val.val
+
+    def get_max(self) -> Any:
+        max_val = self
+
+        while max_val.right is not None:
+            max_val = max_val.right
+
+        return max_val.val
+
     def insert(self, val: Any) -> None:
         if self.val is None:
             self.val = val
@@ -36,6 +52,6 @@ class BSTNode:
             if self.right is None:
                 self.right = BSTNode(val)
                 return
-            
+
             self.right.insert(val)
             return
