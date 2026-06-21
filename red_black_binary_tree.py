@@ -33,7 +33,7 @@ class RBTree:
 
         if pivot_parent == self.root:
             self.root = pivot
-            
+
         elif pivot_parent == pivot_parent.parent.left:
             pivot_parent.parent.left = pivot
 
@@ -42,10 +42,6 @@ class RBTree:
 
         pivot.left = pivot_parent
         pivot_parent.parent = pivot
-
-
-        
-
 
     def rotate_right(self, pivot_parent: RBNode) -> None:
         if pivot_parent == self.nil or pivot_parent.left == self.nil:
@@ -62,7 +58,7 @@ class RBTree:
 
         if pivot_parent == self.root:
             self.root = pivot
-            
+
         elif pivot_parent == pivot_parent.parent.right:
             pivot_parent.parent.right = pivot
 
@@ -104,4 +100,3 @@ class RBTree:
 
         if new_node.val > parent.val:
             parent.right = new_node
-
