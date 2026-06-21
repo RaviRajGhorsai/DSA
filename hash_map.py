@@ -2,6 +2,14 @@ from typing import Any
 
 
 class HashMap:
+    def get(self, key: str) -> Any:
+        index = self.key_to_index(key)
+        
+        if self.hashmap[index] is not None:
+            return self.hashmap[index][1]
+        else:
+            raise Exception("sorry, key not found")
+
     def insert(self, key: str, value: Any) -> None:
         index = self.key_to_index(key)
 
