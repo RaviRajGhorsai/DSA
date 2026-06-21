@@ -106,13 +106,12 @@ class RBTree:
     def fix_insert(self, new_node: RBNode) -> None:
         current_node = new_node
 
-        while current_node is not self.root and current_node.parent.red:
+        while current_node != self.root and current_node.parent.red:
             parent = current_node.parent
 
             grand_parent = current_node.parent.parent
 
-            if parent is grand_parent.right:
-
+            if parent == grand_parent.right:
                 uncle = grand_parent.left
 
                 if uncle.red:
@@ -123,7 +122,7 @@ class RBTree:
 
                     current_node = grand_parent
                 else:
-                    if current_node is parent.left:
+                    if current_node == parent.left:
                         current_node = parent
 
                         self.rotate_right(current_node)
@@ -135,7 +134,7 @@ class RBTree:
 
                     self.rotate_left(grand_parent)
 
-            elif parent is grand_parent.left:
+            elif parent == grand_parent.left:
                 uncle = grand_parent.right
 
                 if uncle.red:
@@ -147,7 +146,7 @@ class RBTree:
                     current_node = grand_parent
 
                 else:
-                    if current_node is parent.right:
+                    if current_node == parent.right:
                         current_node = parent
 
                         self.rotate_left(current_node)
@@ -158,5 +157,5 @@ class RBTree:
                     grand_parent.red = True
 
                     self.rotate_right(grand_parent)
-        
+
         self.root.red = False
