@@ -2,11 +2,15 @@ from typing import Any
 
 
 class HashMap:
-    def key_to_index(self, key: str) -> int:
-        key_sum = sum(ord(k) for k in key) 
-        
-        return key_sum % len(self.hashmap)
+    def insert(self, key: str, value: Any) -> None:
+        index = self.key_to_index(key)
 
+        self.hashmap[index] = (key, value)
+
+    def key_to_index(self, key: str) -> int:
+        key_sum = sum(ord(k) for k in key)
+
+        return key_sum % len(self.hashmap)
 
     # don't touch below this line
 
@@ -19,4 +23,3 @@ class HashMap:
             if v != None:
                 buckets.append(v)
         return str(buckets)
-
