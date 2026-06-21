@@ -16,7 +16,17 @@ class BSTNode:
         self.left: "BSTNode | None" = None
         self.right: "BSTNode | None" = None
         self.val = val
-    
+
+    def height(self) -> int:
+        if self.val is None:
+            return 0
+
+        left_height = self.left.height() if self.left else 0
+
+        right_height = self.right.height() if self.right else 0
+
+        return max(right_height, left_height) + 1
+
     def exists(self, val: Any) -> bool:
         if self.val == val:
             return True
@@ -52,19 +62,17 @@ class BSTNode:
 
         return visited
 
-
     def preorder(self, visited: list[Any]) -> list[Any]:
         if self.val is not None:
             visited.append(self.val)
-        
+
         if self.left is not None:
             self.left.preorder(visited)
-        
+
         if self.right is not None:
             self.right.preorder(visited)
 
         return visited
-
 
     def delete(self, val: Any) -> "BSTNode | None":
         if self.val is None:
@@ -90,7 +98,6 @@ class BSTNode:
                 return self.right
 
             else:
-
                 min_larger_node = self.right
 
                 while min_larger_node.left is not None:
@@ -101,8 +108,6 @@ class BSTNode:
                 self.right = self.right.delete(min_larger_node.val)
 
                 return self
-
-
 
     def get_min(self) -> Any:
         min_val = self
