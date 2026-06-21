@@ -16,7 +16,19 @@ class BSTNode:
         self.left: "BSTNode | None" = None
         self.right: "BSTNode | None" = None
         self.val = val
-   
+    
+    def exists(self, val: Any) -> bool:
+        if self.val == val:
+            return True
+
+        if self.left and val < self.val:
+            return self.left.exists(val)
+
+        if self.right and val > self.val:
+            return self.right.exists(val)
+
+        return False
+
     def inorder(self, visited: list[Any]) -> list[Any]:
         if self.left:
             self.left.inorder(visited)
