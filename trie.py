@@ -2,6 +2,22 @@ from typing import Any
 
 
 class Trie:
+    def find_matches(self, document: str) -> set[str]:
+        matches = set()
+
+        for i in range(len(document)):
+            current_level = self.root
+
+            for j in range(i, len(document)):
+                if document[j] not in current_level:
+                    break
+                current_level = current_level[document[j]]
+
+                if self.end_symbol in current_level:
+                    matches.add(document[i : j + 1])
+
+        return matches
+
     def search_level(
         self, current_level: dict[str, Any], current_prefix: str, words: list[str]
     ) -> list[str]:
