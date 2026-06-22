@@ -2,6 +2,34 @@ from typing import Any
 
 
 class Trie:
+    def search_level(
+        self, current_level: dict[str, Any], current_prefix: str, words: list[str]
+    ) -> list[str]:
+        if current_level is True:
+            return words
+
+        if self.end_symbol in current_level:
+            words.append(current_prefix)
+
+        for c in sorted(current_level.keys()):
+            new_prefix = current_prefix + c
+
+            words = self.search_level(current_level[c], new_prefix, words)
+
+        return words
+
+    def words_with_prefix(self, prefix: str) -> list[str]:
+
+        current_level = self.root
+
+        for c in prefix:
+            if c not in current_level:
+                return []
+            else:
+                current_level = current_level[c]
+
+        return self.search_level(current_level, prefix, [])
+
     def exists(self, word: str) -> bool:
         current = self.root
 
