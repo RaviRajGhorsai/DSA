@@ -2,6 +2,26 @@ from typing import Any
 
 
 class Trie:
+    def longest_common_prefix(self) -> str:
+        current = self.root
+        prefix = ""
+
+        while True:
+            children = []
+            for k in current:
+                if k != self.end_symbol:
+                    children.append(k)
+
+            if self.end_symbol in current or len(children) != 1:
+                break
+            
+            child = children[0]
+            prefix += child
+            current = current[child]
+
+        return prefix
+
+
     def find_matches(self, document: str) -> set[str]:
         matches = set()
 
