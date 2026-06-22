@@ -2,6 +2,31 @@ from typing import Any
 
 
 class Trie:
+
+    def advanced_find_matches(
+        self, document: str, variations: dict[str, str]
+    ) -> set[str]:
+        matches = set()
+
+        for i in range(len(document)):
+            current = self.root
+
+            for j in range(i, len(document)):
+                char = document[j]
+
+                if char in variations:
+                    char = variations[char]
+
+                if char not in current:
+                    break
+
+                current = current[char]
+
+                if self.end_symbol in current:
+                    matches.add(document[i:j + 1])
+
+        return matches
+
     def longest_common_prefix(self) -> str:
         current = self.root
         prefix = ""
