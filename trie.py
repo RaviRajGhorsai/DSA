@@ -2,6 +2,20 @@ from typing import Any
 
 
 class Trie:
+    def exists(self, word: str) -> bool:
+        current = self.root
+
+        for w in word:
+            if w not in current:
+                return False
+
+            current = current[w]
+
+        if self.end_symbol in current:
+            return True
+        else:
+            return False
+
     def add(self, word: str) -> None:
         curent_level = self.root
 
@@ -18,4 +32,3 @@ class Trie:
     def __init__(self) -> None:
         self.root = {}
         self.end_symbol = "*"
-
