@@ -7,6 +7,21 @@ Here we use adjacency list(using dictionary) instead of adjacency matrix(using l
 class Graph:
     def __init__(self) -> None:
         self.graph = {}
+    
+    def depth_first_search(self, start_vertex: str) -> list[str]:
+        visited = []
+        self.depth_first_search_r(visited, start_vertex)
+
+        return visited
+
+    def depth_first_search_r(self, visited: list[str], current_vertex: str) -> None:
+        visited.append(current_vertex)
+
+        neighbour = sorted(self.graph[current_vertex])
+
+        for n in neighbour:
+            if n not in visited:
+                self.depth_first_search_r(visited, n)
 
     def breadth_first_search(self, v: str) -> list[str]:
         visited_vertices = []
