@@ -6,6 +6,14 @@ class Graph:
     def __init__(self) -> None:
         self.graph = {} 
 
+    def unconnected_vertices(self) -> list[int]:
+        unconnected = []
+        for i in self.graph:
+            if len(self.graph[i]) == 0:
+                unconnected.append(i)
+
+        return unconnected
+
     def adjacent_nodes(self, node: int) -> set[int]:
         return self.graph.get(node, set()) 
 
@@ -18,6 +26,10 @@ class Graph:
 
         self.graph[u].add(v)
         self.graph[v].add(u)
+
+    def add_node(self, u: int) -> None:
+        if u not in self.graph:
+            self.graph[u] = set()
 
 
     # don't touch below this line
