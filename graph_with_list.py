@@ -6,6 +6,9 @@ class Graph:
     def __init__(self) -> None:
         self.graph = {} 
 
+    def adjacent_nodes(self, node: int) -> set[int]:
+        return self.graph.get(node, set()) 
+
     def add_edge(self, u: int, v: int) -> None:
         if u not in self.graph:
             self.graph[u] = set()
